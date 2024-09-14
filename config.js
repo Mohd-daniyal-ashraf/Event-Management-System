@@ -7,7 +7,7 @@ module.exports = {
   },
   emailConfig: {
     service: "gmail",
-    user: "daniyalashraf907@gmail.com",
-    pass: "Daniyal123@",
+    user: "your_email@gmail.com",
+    pass: "yourpassword",
   },
 };

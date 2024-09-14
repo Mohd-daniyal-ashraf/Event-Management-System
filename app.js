@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Ashraf123@",
+  password: "yourpassword",
   database: "event_management",
 });
 
@@ -84,12 +84,12 @@ function sendReminder(email, eventId) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "daniyalashraf907@gmail.com",
-        pass: "Daniyal123@",
+        user: "your_email@gmail.com",
+        pass: "your_password",
       },
     });
     const mailOptions = {
-      from: "daniyalashraf907@gmail.com",
+      from: "your_email@gmail.com",
       to: email,
       subject: `Reminder: ${event[0].title}`,
       text: `Reminder for the event: ${event[0].title} on ${event[0].date}`,

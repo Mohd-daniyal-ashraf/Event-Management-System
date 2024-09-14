@@ -1,0 +1,162 @@
+<%- include('layout') %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Management System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/style.css" />
+    <!-- Link to custom styles -->
+    <style>
+      body {
+        background-color: #f8f9fa; /* Light grey background */
+      }
+      .event-header {
+        background-color: #f8f9fa; /* Light grey background for header */
+        color: black;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        padding-top: 0;
+      }
+      .event-details {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .btn-primary {
+        background-color: #007bff; /* Primary blue color */
+        border-color: #007bff;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        border-color: #004085;
+      }
+      .list-group-item {
+        background-color: #e9ecef; /* Light grey background for items */
+        border: none;
+      }
+      .list-group-item:nth-child(even) {
+        background-color: #f8f9fa; /* Alternating row colors */
+      }
+      .form-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .form-container input {
+        margin-bottom: 15px;
+      }
+      .event-details,
+      .form-container {
+        margin-bottom: 20px;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .col-left,
+      .col-right {
+        padding: 15px;
+      }
+      .col-left {
+        flex: 1;
+      }
+      .col-right {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <!-- Event header -->
+      <div class="event-header">
+        <h2 class="display-4"><%= event.title %></h2>
+        <p class="lead"><%= event.description %></p>
+        <p>Date: <%= event.date %></p>
+      </div>
+
+      <!-- Event details and RSVP form side by side -->
+      <div class="row">
+        <!-- Attendees section -->
+        <div class="col-md-6 col-left">
+          <div class="event-details">
+            <h3 class="mb-3">Attendees</h3>
+            <ul class="list-group">
+              <% attendees.forEach(att => { %>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <span><%= att.name %> :: <%= att.email %></span>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+<!-- bcsmd2003600100065@goel.edu.in -->
+        <!-- RSVP form section -->
+        <div class="col-md-6 col-right">
+          <div class="form-container">
+            <h4 class="mb-3">RSVP for Event</h4>
+            <form action="/rsvp" method="post">
+              <input type="hidden" name="eventId" value="<%= event.id %>" />
+              <div class="mb-3">
+                <label for="userName" class="form-label"></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  name="userName"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="userEmail" class="form-label"></label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="userEmail"
+                  name="userEmail"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">RSVP</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
